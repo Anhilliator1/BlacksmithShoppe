@@ -1,6 +1,9 @@
 using Godot;
 using System;
 
+[Signal]
+public delegate void GetForgingScoreEventHandler();
+
 public partial class ForgingItem : RigidBody3D
 {
 	private MeshInstance3D mesh;  // Reference to the mesh
