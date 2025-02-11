@@ -1,0 +1,59 @@
+[gd_scene load_steps=3 format=3 uid="uid://svhckfwbory1"]
+
+[ext_resource type="PackedScene" uid="uid://ury7d1u3v0o8" path="res://forging_item.tscn" id="1_g7c10"]
+[ext_resource type="Script" path="res://Camera3d.cs" id="1_h8620"]
+
+[node name="Main" type="Node"]
+
+[node name="CameraPivot" type="Marker3D" parent="."]
+transform = Transform3D(0.703395, -0.405663, 0.583673, 0, 0.821149, 0.570714, -0.7108, -0.401437, 0.577592, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.2129)
+fov = 85.2
+script = ExtResource("1_h8620")
+
+[node name="ForgingItem" parent="." instance=ExtResource("1_g7c10")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.528438, 0.848972, 0, -0.848972, 0.528438, 0, 1.71882, 1.6422)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureButton" type="TextureButton" parent="Control"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 279.0
+offset_right = 41.0
+offset_bottom = 319.0
+
+[node name="TextureButton2" type="TextureButton" parent="Control"]
+layout_mode = 0
+offset_left = 1114.0
+offset_top = 308.0
+offset_right = 1154.0
+offset_bottom = 348.0
+
+[node name="TextureButton3" type="TextureButton" parent="Control"]
+layout_mode = 0
+offset_left = 551.0
+offset_top = 607.0
+offset_right = 591.0
+offset_bottom = 647.0
+
+[node name="TextureButton4" type="TextureButton" parent="Control"]
+layout_mode = 0
+offset_left = 556.0
+offset_right = 596.0
+offset_bottom = 40.0
+
+[connection signal="AltSelect" from="CameraPivot/Camera3D" to="ForgingItem" method="AltSelected"]
+[connection signal="MouseHover" from="CameraPivot/Camera3D" to="ForgingItem" method="Highlighted"]
+[connection signal="Select" from="CameraPivot/Camera3D" to="ForgingItem" method="Selected"]
+[connection signal="Unclick" from="CameraPivot/Camera3D" to="ForgingItem" method="UnClick"]
+[connection signal="mouse_entered" from="ForgingItem" to="CameraPivot/Camera3D" method="_MouseOn"]
+[connection signal="mouse_exited" from="ForgingItem" to="CameraPivot/Camera3D" method="_MouseOff"]

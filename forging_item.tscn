@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://ury7d1u3v0o8"]
+
+[ext_resource type="Script" path="res://ForgingItem.cs" id="1_rukj3"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_02udt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6vkhd"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_57b2r"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lsclc"]
+emission_enabled = true
+emission = Color(0.86709, 0.86709, 1.54018e-06, 1)
+
+[node name="ForgingItem" type="RigidBody3D"]
+physics_material_override = SubResource("PhysicsMaterial_02udt")
+gravity_scale = 0.0
+script = ExtResource("1_rukj3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_6vkhd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_57b2r")
+surface_material_override/0 = SubResource("StandardMaterial3D_lsclc")
