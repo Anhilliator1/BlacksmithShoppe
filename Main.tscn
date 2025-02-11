@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://svhckfwbory1"]
 
-[ext_resource type="PackedScene" uid="uid://ury7d1u3v0o8" path="res://forging_item.tscn" id="1_g7c10"]
+[ext_resource type="PackedScene" uid="uid://ury7d1u3v0o8" path="res://Interactables/forging_item.tscn" id="1_g7c10"]
 [ext_resource type="Script" path="res://Camera3d.cs" id="1_h8620"]
 
 [node name="Main" type="Node"]

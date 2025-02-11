@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://ury7d1u3v0o8"]
 
-[ext_resource type="Script" path="res://ForgingItem.cs" id="1_rukj3"]
+[ext_resource type="Script" path="res://Interactables/ForgingItem.cs" id="1_rukj3"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_02udt"]
 
