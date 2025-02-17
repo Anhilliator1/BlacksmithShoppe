@@ -1,13 +1,12 @@
 using Godot;
 using System;
 
-public partial class Main : Node
+public partial class Label : Godot.Label
 {
-	private int forgingScore = 0;
+	private int _score = 0;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		forgingScore = 0;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -15,9 +14,7 @@ public partial class Main : Node
 	{
 	}
 	
-	public void GetForgingScore(){
-		forgingScore++;
+	public void UpdateForgeScore(int Score){
+		Text = $"Forge Score: {Score}";
 	}
-	
-	
 }
