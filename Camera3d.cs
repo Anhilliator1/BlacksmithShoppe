@@ -5,6 +5,7 @@ public partial class Camera3d : Camera3D
 {
 	[Export]
 	public bool mouseOn = false;
+	public bool mouseClicked = false;
 	
 	[Signal]
 	public delegate void UnclickEventHandler();
@@ -43,10 +44,10 @@ public partial class Camera3d : Camera3D
 	}
 	
 	public override void _Input(InputEvent @event){
-		if (Input.IsActionPressed("mouseClick") && mouseOn){
+		if (Input.IsActionJustPressed("mouseClick") && mouseOn && !mouseClicked){
 			//GD.Print("Block Clicked");
 			EmitSignal(SignalName.Select);
-		} else if (Input.IsActionPressed("altClick") && mouseOn){
+		} else if (Input.IsActionJustPressed("altClick") && mouseOn && !mouseClicked){
 			//GD.Print("Block Alt-Clicked");
 			EmitSignal(SignalName.AltSelect);
 		} else {
