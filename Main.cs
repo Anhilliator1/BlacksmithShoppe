@@ -3,21 +3,33 @@ using System;
 
 public partial class Main : Node
 {
-	private int forgingScore = 0;
-	// Called when the node enters the scene tree for the first time.
+	private int totalForgeScore = 0;
+	private Label forgeScoreLabel;
+
 	public override void _Ready()
 	{
-		forgingScore = 0;
+		// Get the UserInterface node first
+		Node userInterface = GetNode("UserInterface");
+
+		// Now get the Label node within the UserInterface
+		forgeScoreLabel = userInterface.GetNode<Label>("Label");
+
+		// You can handle additional setup if needed
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
+	// This will update whenever a ForgingItem emits a ScoreUpdate signal
+	public void OnForgingItemScoreUpdate(int sectionScore)
 	{
+		// Recalculate the total score
+		totalForgeScore = 0;
+
+		// Sum all scores from all ForgingItem instances
+		foreach (ForgingItem item in GetTree().GetNodesInGroup("ForgingSections"))
+		{
+			totalForgeScore += item.ForgeScore;
+		}
+
+		// Update the Label with the new total score
+		forgeScoreLabel.UpdateForgeScore(totalForgeScore);
 	}
-	
-	public void GetForgingScore(){
-		forgingScore++;
-	}
-	
-	
 }

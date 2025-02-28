@@ -16,8 +16,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.2129)
 fov = 85.2
 script = ExtResource("1_h8620")
 
-[node name="ForgingItem" parent="." instance=ExtResource("1_g7c10")]
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.528438, 0.848972, 0, -0.848972, 0.528438, 0, 1.71882, 1.6422)
 
@@ -89,10 +87,14 @@ grow_vertical = 2
 text = "Forge Score: 0"
 script = ExtResource("4_15k7h")
 
-[connection signal="AltSelect" from="CameraPivot/Camera3D" to="ForgingItem" method="AltSelected"]
-[connection signal="MouseHover" from="CameraPivot/Camera3D" to="ForgingItem" method="Highlighted"]
-[connection signal="Select" from="CameraPivot/Camera3D" to="ForgingItem" method="Selected"]
-[connection signal="Unclick" from="CameraPivot/Camera3D" to="ForgingItem" method="UnClick"]
-[connection signal="ScoreUpdate" from="ForgingItem" to="UserInterface/Label" method="UpdateForgeScore"]
-[connection signal="mouse_entered" from="ForgingItem" to="CameraPivot/Camera3D" method="_MouseOn"]
-[connection signal="mouse_exited" from="ForgingItem" to="CameraPivot/Camera3D" method="_MouseOff"]
+[node name="ForgingSections" type="Node3D" parent="."]
+
+[node name="ForgingItem" parent="ForgingSections" instance=ExtResource("1_g7c10")]
+
+[connection signal="AltSelect" from="CameraPivot/Camera3D" to="ForgingSections/ForgingItem" method="AltSelected"]
+[connection signal="MouseHover" from="CameraPivot/Camera3D" to="ForgingSections/ForgingItem" method="Highlighted"]
+[connection signal="Select" from="CameraPivot/Camera3D" to="ForgingSections/ForgingItem" method="Selected"]
+[connection signal="Unclick" from="CameraPivot/Camera3D" to="ForgingSections/ForgingItem" method="UnClick"]
+[connection signal="ScoreUpdate" from="ForgingSections/ForgingItem" to="UserInterface/Label" method="UpdateForgeScore"]
+[connection signal="mouse_entered" from="ForgingSections/ForgingItem" to="CameraPivot/Camera3D" method="_MouseOn"]
+[connection signal="mouse_exited" from="ForgingSections/ForgingItem" to="CameraPivot/Camera3D" method="_MouseOff"]
