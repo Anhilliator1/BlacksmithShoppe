@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://svhckfwbory1"]
+[gd_scene load_steps=6 format=3 uid="uid://svhckfwbory1"]
 
 [ext_resource type="PackedScene" uid="uid://ury7d1u3v0o8" path="res://Interactables/forging_item.tscn" id="1_g7c10"]
 [ext_resource type="Script" path="res://Camera3d.cs" id="1_h8620"]
 [ext_resource type="Script" path="res://Main.cs" id="1_qt0fw"]
 [ext_resource type="Script" path="res://Label.cs" id="4_15k7h"]
+[ext_resource type="Script" path="res://ForgingSections.cs" id="4_h5ahx"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_qt0fw")
@@ -88,6 +89,7 @@ text = "Forge Score: 0"
 script = ExtResource("4_15k7h")
 
 [node name="ForgingSections" type="Node3D" parent="."]
+script = ExtResource("4_h5ahx")
 
 [node name="ForgingItem" parent="ForgingSections" instance=ExtResource("1_g7c10")]
 
@@ -95,6 +97,7 @@ script = ExtResource("4_15k7h")
 [connection signal="MouseHover" from="CameraPivot/Camera3D" to="ForgingSections/ForgingItem" method="Highlighted"]
 [connection signal="Select" from="CameraPivot/Camera3D" to="ForgingSections/ForgingItem" method="Selected"]
 [connection signal="Unclick" from="CameraPivot/Camera3D" to="ForgingSections/ForgingItem" method="UnClick"]
-[connection signal="ScoreUpdate" from="ForgingSections/ForgingItem" to="UserInterface/Label" method="UpdateForgeScore"]
+[connection signal="TotalScoreUpdated" from="ForgingSections" to="UserInterface/Label" method="UpdateForgeScore"]
+[connection signal="ScoreUpdate" from="ForgingSections/ForgingItem" to="ForgingSections" method="OnForgingItemScoreUpdate"]
 [connection signal="mouse_entered" from="ForgingSections/ForgingItem" to="CameraPivot/Camera3D" method="_MouseOn"]
 [connection signal="mouse_exited" from="ForgingSections/ForgingItem" to="CameraPivot/Camera3D" method="_MouseOff"]

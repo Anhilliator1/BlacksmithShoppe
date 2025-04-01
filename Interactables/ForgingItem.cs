@@ -34,7 +34,6 @@ public partial class ForgingItem : RigidBody3D
 		material.EmissionEnabled = false;
 
 		// Add this ForgingItem to the "ForgingSections" group for global tracking
-		AddToGroup("ForgingSections");
 	}
 
 	// Called when selected (normal click)

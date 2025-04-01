@@ -7,15 +7,17 @@ public partial class Main : Node
 	private Label forgeScoreLabel;
 
 	public override void _Ready()
-	{
-		// Get the UserInterface node first
-		Node userInterface = GetNode("UserInterface");
+{
+	Node userInterface = GetNode("UserInterface");
+	forgeScoreLabel = userInterface.GetNode<Label>("Label");
 
-		// Now get the Label node within the UserInterface
-		forgeScoreLabel = userInterface.GetNode<Label>("Label");
-
-		// You can handle additional setup if needed
-	}
+	ForgingSections forgingSections = GetNode<ForgingSections>("ForgingSections");
+	forgingSections.Connect("TotalScoreUpdated", new Callable(this, nameof(UpdateForgeScore)));
+}	
+public void UpdateForgeScore(int totalScore)
+{
+	forgeScoreLabel.Text = $"Forge Score: {totalScore}";
+}
 
 	// This will update whenever a ForgingItem emits a ScoreUpdate signal
 	public void OnForgingItemScoreUpdate(int sectionScore)
