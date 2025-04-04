@@ -43,6 +43,13 @@ public partial class Camera3d : Camera3D
 		EmitSignal(SignalName.MouseHover, mouseOn);
 	}
 	
+	public void Zoom(bool zoomIn){
+		const float zoomStep = 2.0f;
+		const float minFov = 10.0f;
+		const float maxFov = 90.0f;
+		Fov = Mathf.Clamp(Fov + (zoomIn ? -zoomStep : zoomStep), minFov, maxFov);
+	}
+	
 	public override void _Input(InputEvent @event){
 		if (Input.IsActionJustPressed("mouseClick") && mouseOn && !mouseClicked){
 			//GD.Print("Block Clicked");
@@ -50,6 +57,10 @@ public partial class Camera3d : Camera3D
 		} else if (Input.IsActionJustPressed("altClick") && mouseOn && !mouseClicked){
 			//GD.Print("Block Alt-Clicked");
 			EmitSignal(SignalName.AltSelect);
+		} else if (Input.IsActionJustPressed("mouseUp")){
+			Zoom(true);
+		} else if (Input.IsActionJustPressed("mouseDown")){
+			Zoom(false);
 		} else {
 			EmitSignal(SignalName.Unclick);
 		}

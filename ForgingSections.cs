@@ -16,7 +16,7 @@ public partial class ForgingSections : Node3D
 		foreach (ForgingItem item in GetChildren())
 		{
 			forgingItems.Add(item);
-			item.Connect("ScoreUpdate", new Callable(this, nameof(OnForgingItemScoreUpdate)));
+			//item.Connect("ScoreUpdate", new Callable(this, nameof(OnForgingItemScoreUpdate)));
 		}
 	}
 

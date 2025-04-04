@@ -13,7 +13,7 @@ script = ExtResource("1_qt0fw")
 transform = Transform3D(0.703395, -0.405663, 0.583673, 0, 0.821149, 0.570714, -0.7108, -0.401437, 0.577592, 0, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.2129)
+transform = Transform3D(0.999999, -8.9407e-08, -2.98023e-07, 0, 1, -4.47035e-08, -2.98023e-08, 2.08616e-07, 0.999999, 0.308032, -0.196907, 2.6829)
 fov = 85.2
 script = ExtResource("1_h8620")
 

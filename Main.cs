@@ -17,7 +17,7 @@ public partial class Main : Node
 public void UpdateForgeScore(int totalScore)
 {
 	forgeScoreLabel.Text = $"Forge Score: {totalScore}";
-}
+}	
 
 	// This will update whenever a ForgingItem emits a ScoreUpdate signal
 	public void OnForgingItemScoreUpdate(int sectionScore)

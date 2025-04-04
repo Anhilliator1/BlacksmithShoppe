@@ -7,6 +7,7 @@ public partial class ForgingItem : RigidBody3D
 	public delegate void ScoreUpdateEventHandler(int score);
 	
 	private MeshInstance3D mesh;  // Reference to the mesh
+	private CollisionShape3D collider;
 	private StandardMaterial3D material;  // Material to modify
 	
 	[Export]
@@ -19,6 +20,7 @@ public partial class ForgingItem : RigidBody3D
 	public override void _Ready()
 	{
 		mesh = GetNode<MeshInstance3D>("MeshInstance3D");
+		collider = GetNode<CollisionShape3D>("CollisionShape3D");
 
 		// Ensure it has a material override, or create a new one
 		if (mesh.MaterialOverride == null)
@@ -59,6 +61,7 @@ public partial class ForgingItem : RigidBody3D
 		EmitSignal(SignalName.ScoreUpdate, ForgeScore);  // Emit the updated score
 
 		// Deactivate glow and highlight
+		UpdateScaleFromScore(); 
 		Highlighted(mouseHover);
 	}
 
@@ -70,6 +73,7 @@ public partial class ForgingItem : RigidBody3D
 		clicked = false;
 
 		// Deactivate glow and highlight
+		UpdateScaleFromScore(); 
 		Highlighted(mouseHover);
 	}
 
@@ -87,6 +91,30 @@ public partial class ForgingItem : RigidBody3D
 		{
 			// Deactivate glow if clicked or mouse is not hovering
 			material.EmissionEnabled = false;
+		}
+	}
+	
+		private void UpdateScaleFromScore()
+		{
+		float scaleFactor = Mathf.Clamp(1.0f + ForgeScore * 0.05f, 0.5f, 3.0f);
+		Vector3 scaleVec = new Vector3(scaleFactor, scaleFactor, scaleFactor);
+
+		// Scale ONLY the mesh, not the whole RigidBody
+		mesh.Scale = scaleVec;
+
+		// Update collision shape size independently
+		if (collider.Shape is BoxShape3D boxShape)
+		{
+			boxShape.Size = scaleVec;  // Approximate scaling
+		}
+		else if (collider.Shape is SphereShape3D sphereShape)
+		{
+			sphereShape.Radius = scaleFactor * 0.5f;
+		}
+		else if (collider.Shape is CapsuleShape3D capsuleShape)
+		{
+			capsuleShape.Radius = scaleFactor * 0.3f;
+			capsuleShape.Height = scaleFactor;
 		}
 	}
 }
